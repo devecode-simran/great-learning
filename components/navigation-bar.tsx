@@ -15,6 +15,7 @@ import {
 import React, { memo, useEffect, useState } from 'react';
 import {
   Dimensions,
+  Image,
   Platform,
   Pressable,
   ScrollView,
@@ -215,15 +216,15 @@ const NavigationBarComponent = ({
         {/* Logo Section */}
         <View style={styles.logoSection}>
           <View style={styles.logoContainer}>
-            <View style={[styles.logoIcon, { backgroundColor: '#1E88E5' }]}>
-              <Text style={styles.logoText}>G</Text>
-            </View>
-            {!isMobile && (
-              <View style={styles.logoTextContainer}>
-                <Text style={[styles.logoTextMain, { color: '#1565C0' }]}>Great</Text>
-                <Text style={[styles.logoTextSub, { color: '#1E88E5' }]}>Learning</Text>
-              </View>
-            )}
+            <Image
+              source={
+                isMobile
+                  ? require('@/assets/logos/LOGO.jpg')
+                  : require('@/assets/logos/Great_Learning_Logo.jpg')
+              }
+              style={isMobile ? styles.logoImageMobile : styles.logoImageDesktop}
+              resizeMode="contain"
+            />
           </View>
         </View>
 
@@ -363,31 +364,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  logoIcon: {
-    width: 32,
-    height: 32,
-    borderRadius: 6,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 8,
+  logoImageMobile: {
+    width: 40,
+    height: 40,
   },
-  logoText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: '700',
-  },
-  logoTextContainer: {
-    flexDirection: 'column',
-  },
-  logoTextMain: {
-    fontSize: 16,
-    fontWeight: '700',
-    lineHeight: 18,
-  },
-  logoTextSub: {
-    fontSize: 16,
-    fontWeight: '600',
-    lineHeight: 18,
+  logoImageDesktop: {
+    width: 150,
+    height: 60,
   },
   navSection: {
     flex: 1,
