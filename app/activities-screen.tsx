@@ -32,10 +32,8 @@ export function ActivitiesScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
-  // Fetch activities from API
   const { activities, loading, error, refetch } = useFetchActivities();
 
-  // Responsive margins - Initialize with current window width to prevent flicker
   const [screenWidth, setScreenWidth] = useState(() => {
     if (Platform.OS === 'web' && typeof window !== 'undefined') {
       return window.innerWidth;

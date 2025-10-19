@@ -4,13 +4,13 @@ import { mockActivities } from '@/features/activities';
 import { AnalyticsCard, useAnalyticsData } from '@/features/analytics';
 import { useColorScheme } from '@/features/theme';
 import {
-    BarChart3,
-    BookOpen,
-    CheckSquare,
-    FileText,
-    GraduationCap,
-    Lightbulb,
-    MessageCircle,
+  BarChart3,
+  BookOpen,
+  CheckSquare,
+  FileText,
+  GraduationCap,
+  Lightbulb,
+  MessageCircle,
 } from 'lucide-react-native';
 import React, { useEffect, useState } from 'react';
 import { Dimensions, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -44,7 +44,7 @@ export default function MainScreen() {
     }
     return Dimensions.get('window').width;
   });
-  
+
   const isMobile = screenWidth < 768;
   const horizontalPadding = isMobile ? 16 : 150;
 

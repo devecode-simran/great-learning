@@ -1,8 +1,28 @@
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/features/theme';
-import { BarChart3, BookOpen, Crown, GraduationCap, Home, LucideIcon, Menu, Search, User, X } from 'lucide-react-native';
+import {
+  BarChart3,
+  BookOpen,
+  Crown,
+  GraduationCap,
+  Home,
+  LucideIcon,
+  Menu,
+  Search,
+  User,
+  X,
+} from 'lucide-react-native';
 import React, { memo, useEffect, useState } from 'react';
-import { Dimensions, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  Dimensions,
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
 interface NavigationBarProps {
   activeTab?:
@@ -95,15 +115,14 @@ const NavigationBarComponent = ({
 }: NavigationBarProps) => {
   const colorScheme = useColorScheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-  // Initialize with current window width to prevent flicker
+
   const [screenWidth, setScreenWidth] = useState(() => {
     if (Platform.OS === 'web' && typeof window !== 'undefined') {
       return window.innerWidth;
     }
     return Dimensions.get('window').width;
   });
-  
+
   const isMobile = screenWidth < 768;
 
   useEffect(() => {
@@ -167,7 +186,10 @@ const NavigationBarComponent = ({
     }
   };
 
-  const renderNavItem = (item: { id: string; label: string; icon: LucideIcon }, isActive: boolean) => {
+  const renderNavItem = (
+    item: { id: string; label: string; icon: LucideIcon },
+    isActive: boolean
+  ) => {
     return (
       <NavItem
         key={item.id}
@@ -219,11 +241,7 @@ const NavigationBarComponent = ({
           </View>
         )}
 
-        {/* Mobile Navigation - Hidden tabs, only hamburger menu */}
-
-        {/* Right Section */}
         <View style={styles.rightSection}>
-          {/* Search Bar - Hidden on mobile */}
           {!isMobile && (
             <Pressable
               style={({ pressed }) => [
@@ -249,7 +267,6 @@ const NavigationBarComponent = ({
             </Pressable>
           )}
 
-          {/* Mobile Menu Button */}
           {isMobile && (
             <Pressable
               style={({ pressed }) => [
@@ -270,7 +287,6 @@ const NavigationBarComponent = ({
             </Pressable>
           )}
 
-          {/* Profile Icon */}
           <Pressable
             style={({ pressed }) => [
               styles.profileContainer,
@@ -287,7 +303,6 @@ const NavigationBarComponent = ({
         </View>
       </View>
 
-      {/* Mobile Menu Overlay */}
       {isMobile && isMobileMenuOpen && (
         <View
           style={[
@@ -298,7 +313,11 @@ const NavigationBarComponent = ({
             },
           ]}
         >
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.mobileMenuScroll}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.mobileMenuScroll}
+          >
             {primaryNavItems.map((item) => {
               const isActive = activeTab === item.id;
               return renderNavItem(item, isActive);
