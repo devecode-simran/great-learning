@@ -15,7 +15,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { Dimensions, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ActivitiesScreen } from './activities-screen';
+import { ActivitiesScreen } from './_activities-screen';
 
 const ACTIVITY_TYPE_ICONS = {
   'online-class': GraduationCap,

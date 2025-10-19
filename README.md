@@ -86,7 +86,7 @@ npm run android
 ```
 great-learning-activity-listing/
 ├── app/                          # Application screens
-│   ├── activities-screen.tsx     # Main activities listing
+│   ├── _activities-screen.tsx    # Main activities component
 │   ├── index.tsx                 # Landing page
 │   ├── modal.tsx                 # Modal screens
 │   └── _layout.tsx               # Root layout
