@@ -1,21 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useColorScheme as useRNColorScheme } from 'react-native';
+import { useColorScheme as useColorSchemeFeature } from '@/features/theme';
 
 /**
- * To support static rendering, this value needs to be re-calculated on the client side for web
+ * Hook to get the current color scheme for web platform
+ * Uses the theme context which respects user preference over system preference
  */
 export function useColorScheme() {
-  const [hasHydrated, setHasHydrated] = useState(false);
-
-  useEffect(() => {
-    setHasHydrated(true);
-  }, []);
-
-  const colorScheme = useRNColorScheme();
-
-  if (hasHydrated) {
-    return colorScheme;
-  }
-
-  return 'light';
+  return useColorSchemeFeature();
 }

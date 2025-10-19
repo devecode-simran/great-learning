@@ -1,15 +1,18 @@
 {
   "expo": {
-    "name": "great-learning-activity-listing",
+    "name": "Great Learning Activities",
     "slug": "great-learning-activity-listing",
     "version": "1.0.0",
+    "description": "A cross-platform activity listing application for online learning",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "greatlearningactivitylisting",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "primaryColor": "#3B82F6",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.greatlearning.activities"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +22,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.greatlearning.activities"
     },
     "web": {
       "output": "static",
