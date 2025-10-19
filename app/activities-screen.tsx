@@ -4,22 +4,36 @@ import {
   ActivityCard,
   ActivityFilters,
   FilterType,
-  mockActivities,
+  SkeletonLoadingScreen,
   useActivityActions,
   useActivityFilters,
   useActivityStats,
+  useFetchActivities,
   useFilterCounts,
 } from '@/features/activities';
 import { ThemeToggle, useColorScheme } from '@/features/theme';
-import { Search, SearchX, X } from 'lucide-react-native';
+import { AlertCircle, Search, SearchX, X } from 'lucide-react-native';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Dimensions, FlatList, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
 export function ActivitiesScreen() {
   const colorScheme = useColorScheme();
 
   const [selectedFilter, setSelectedFilter] = useState<FilterType>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+
+  // Fetch activities from API
+  const { activities, loading, error, refetch } = useFetchActivities();
 
   // Responsive margins - Initialize with current window width to prevent flicker
   const [screenWidth, setScreenWidth] = useState(() => {
@@ -28,7 +42,7 @@ export function ActivitiesScreen() {
     }
     return Dimensions.get('window').width;
   });
-  
+
   const isMobile = screenWidth < 768;
   const horizontalMargin = isMobile ? 16 : 150;
 
@@ -51,12 +65,12 @@ export function ActivitiesScreen() {
   }, []);
 
   const { filteredActivities } = useActivityFilters({
-    activities: mockActivities,
+    activities: activities,
     filterType: selectedFilter,
     searchQuery,
   });
-  const filterCounts = useFilterCounts(mockActivities);
-  const stats = useActivityStats(mockActivities);
+  const filterCounts = useFilterCounts(activities);
+  const stats = useActivityStats(activities);
   const { handleActivityPress } = useActivityActions();
 
   const clearSearch = useCallback(() => {
@@ -70,7 +84,7 @@ export function ActivitiesScreen() {
           <View style={styles.titleSection}>
             <Text style={[styles.title, { color: Colors[colorScheme].text }]}>My Activities</Text>
             <Text style={[styles.subtitle, { color: Colors[colorScheme].secondaryText }]}>
-              {mockActivities.length} total activities
+              {activities.length} total activities
             </Text>
           </View>
           <ThemeToggle />
@@ -134,18 +148,26 @@ export function ActivitiesScreen() {
             styles.searchContainer,
             {
               backgroundColor: Colors[colorScheme].cardBackground,
-              borderColor: Colors[colorScheme].borderColor,
+              borderColor: isSearchFocused
+                ? Colors[colorScheme].tint
+                : Colors[colorScheme].borderColor,
+              borderWidth: isSearchFocused ? 2 : 1,
               marginHorizontal: horizontalMargin,
             },
           ]}
         >
-          <Search size={18} color={Colors[colorScheme].secondaryText} />
+          <Search
+            size={18}
+            color={isSearchFocused ? Colors[colorScheme].tint : Colors[colorScheme].secondaryText}
+          />
           <TextInput
             style={[styles.searchInput, { color: Colors[colorScheme].text }]}
             placeholder="Search activities..."
             placeholderTextColor={Colors[colorScheme].secondaryText}
             value={searchQuery}
             onChangeText={setSearchQuery}
+            onFocus={() => setIsSearchFocused(true)}
+            onBlur={() => setIsSearchFocused(false)}
           />
           {searchQuery.length > 0 && (
             <Pressable onPress={clearSearch} style={styles.clearButton}>
@@ -179,6 +201,8 @@ export function ActivitiesScreen() {
     filteredActivities.length,
     clearSearch,
     horizontalMargin,
+    activities.length,
+    isSearchFocused,
   ]);
 
   const renderEmptyState = useCallback(() => {
@@ -201,6 +225,38 @@ export function ActivitiesScreen() {
     },
     [handleActivityPress]
   );
+
+  // Loading state
+  if (loading) {
+    return <SkeletonLoadingScreen />;
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <View
+        style={[
+          styles.container,
+          styles.centerContent,
+          { backgroundColor: Colors[colorScheme].background },
+        ]}
+      >
+        <AlertCircle size={64} color={Colors[colorScheme].error} />
+        <Text style={[styles.errorTitle, { color: Colors[colorScheme].text }]}>
+          Oops! Something went wrong
+        </Text>
+        <Text style={[styles.errorText, { color: Colors[colorScheme].secondaryText }]}>
+          {error}
+        </Text>
+        <Pressable
+          style={[styles.retryButton, { backgroundColor: Colors[colorScheme].tint }]}
+          onPress={refetch}
+        >
+          <Text style={styles.retryButtonText}>Retry</Text>
+        </Pressable>
+      </View>
+    );
+  }
 
   return (
     <FlatList
@@ -296,10 +352,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: Platform.OS === 'ios' ? 14 : 12,
     borderRadius: 12,
-    borderWidth: 1,
     ...Platform.select({
       web: {
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+        transition: 'all 0.2s ease-in-out',
       },
       default: {
         shadowColor: '#000',
@@ -317,6 +373,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       web: {
         outline: 'none',
+        outlineWidth: 0,
       },
     }),
   },
@@ -349,5 +406,36 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 16,
     textAlign: 'center',
+  },
+  centerContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 40,
+  },
+  errorTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  errorText: {
+    fontSize: 14,
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  retryButton: {
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+    ...Platform.select({
+      web: {
+        cursor: 'pointer',
+      },
+    }),
+  },
+  retryButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
