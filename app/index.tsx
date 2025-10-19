@@ -1,6 +1,6 @@
 import { NavigationBar } from '@/components/navigation-bar';
 import { Colors } from '@/constants/theme';
-import { mockActivities } from '@/features/activities';
+import { useFetchActivities } from '@/features/activities';
 import { AnalyticsCard, useAnalyticsData } from '@/features/analytics';
 import { useColorScheme } from '@/features/theme';
 import {
@@ -35,7 +35,8 @@ export default function MainScreen() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   const [activeTab, setActiveTab] = useState<'activities' | 'analytics'>('activities');
-  const analytics = useAnalyticsData(mockActivities);
+  const { activities } = useFetchActivities();
+  const analytics = useAnalyticsData(activities);
 
   // Responsive margins - Initialize with current window width to prevent flicker
   const [screenWidth, setScreenWidth] = useState(() => {

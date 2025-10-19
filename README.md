@@ -1,301 +1,205 @@
-# Great Learning - Activity Listing Application
+# Great Learning Activity Listing Application
 
-A cross-platform (Web & Mobile) activity listing application built for Great Learning's online learning platform. This app allows learners to view, filter, and manage their learning activities including online classes, assignments, quizzes, and discussions.
+A cross-platform activity management system for Great Learning's online learning platform. Built with React Native and Expo, this application provides learners with a unified interface to view and manage their learning activities across web and mobile devices.
 
-## 🎯 Features
+## Features
 
-- **📱 Cross-Platform**: Single codebase runs on Web, iOS, and Android
-- **📚 Activity Management**: View all learning activities (Online Classes, Assignments, Quizzes, Discussions)
-- **🔍 Smart Filtering**: Filter activities by type with dynamic counts
-- **🔎 Search**: Search activities by title, description, category, or instructor
-- **📊 Analytics**: Track progress, completion rates, and earned points
-- **🌓 Light/Dark Mode**: Automatic theme switching based on system preferences
-- **📱 Responsive Design**: Optimized for all screen sizes (mobile, tablet, desktop)
-- **⚡ Performance**: Optimized rendering with memoization and FlatList
-- **🎨 Modern UI**: Beautiful, intuitive interface with smooth animations
+- Cross-platform support (Web, iOS, Android)
+- Activity management for online classes, assignments, quizzes, and discussions
+- Real-time filtering and search functionality
+- Progress tracking with analytics dashboard
+- Responsive design optimized for all screen sizes
+- Light and dark mode support
+- API integration with MockAPI
 
-## 🏗️ Tech Stack
+## Technology Stack
 
-### Core Technologies
+Core Framework
 
-- **React Native** (with Expo) - Cross-platform mobile framework
-- **TypeScript** - Type-safe code
-- **Expo Router** - File-based routing for navigation
-- **React Native Web** - Web support from the same codebase
+- React Native with Expo for cross-platform development
+- TypeScript for type safety
+- Expo Router for file-based navigation
 
-### Why These Choices?
+Key Libraries
 
-#### Expo + React Native
+- Lucide React Native for icons
+- React Native Reanimated for animations
 
-- ✅ Single codebase for Web, iOS, and Android
-- ✅ Fast development with hot reload
-- ✅ Built-in components that work across platforms
-- ✅ Easy to build and deploy
-- ✅ Strong community and ecosystem
+Development Tools
 
-#### TypeScript
+- ESLint and Prettier for code quality
+- Jest and React Native Testing Library for testing
+- Husky for pre-commit hooks
 
-- ✅ Type safety reduces runtime errors
-- ✅ Better IDE support and autocomplete
-- ✅ Self-documenting code
-- ✅ Easier refactoring and maintenance
+## Prerequisites
 
-#### Expo Router
+- Node.js (v20 or higher recommended)
+- npm or yarn
+- Git
 
-- ✅ File-based routing (similar to Next.js)
-- ✅ Supports deep linking out of the box
-- ✅ Type-safe navigation
-- ✅ Works on web and native
+For mobile development:
 
-### Tradeoffs
+- Expo Go app (easiest option - no additional setup required)
+- OR iOS Simulator (macOS with Xcode)
+- OR Android Emulator (Android Studio with SDK)
 
-| Aspect           | Pros                                      | Cons                                            |
-| ---------------- | ----------------------------------------- | ----------------------------------------------- |
-| **Expo**         | Quick setup, easy deployment, OTA updates | Larger app size than bare React Native          |
-| **React Native** | Learn once, write anywhere                | Some platform-specific code still needed        |
-| **Mock Data**    | No backend dependency, fast development   | Need to integrate with real API later           |
-| **Single Repo**  | Code sharing, easier maintenance          | Web and native may need different optimizations |
+## Getting Started
 
-## 📋 Prerequisites
-
-Before running this project, ensure you have:
-
-- **Node.js** (v18 or later) - [Download here](https://nodejs.org/)
-- **npm** or **yarn** package manager
-- **Git** - [Download here](https://git-scm.com/)
-
-**That's it!** No additional setup needed for web.
-
-### For Mobile Testing (Optional)
-
-**Easiest Method** (Recommended):
-
-- **Expo Go App** - Free app for testing on your actual phone ([Android](https://play.google.com/store/apps/details?id=host.exp.exponent) | [iOS](https://apps.apple.com/app/expo-go/id982107779))
-  - No Android Studio or Xcode required!
-  - Scan QR code and app runs on your phone instantly
-
-**Advanced Native Development** (Not Required):
-
-- **iOS**: macOS with Xcode installed (for iOS Simulator)
-- **Android**: Android Studio with Android SDK (for Android Emulator)
-
-## 🚀 Getting Started
-
-### 1. Clone the Repository
+### Installation
 
 ```bash
-git clone <your-repo-url>
+git clone <repository-url>
 cd great-learning-activity-listing
-```
-
-### 2. Install Dependencies
-
-```bash
 npm install
-# or
-yarn install
 ```
 
-### 3. Run on Web
+### Running the Application
+
+Web Development
 
 ```bash
 npm run web
-# or
-yarn web
 ```
 
-The application will open in your default browser at `http://localhost:8081`
+Opens at `http://localhost:8081`
 
-### 4. Run on Mobile (Easiest - No Setup Required) ⭐
+Mobile Development (Easiest Method)
 
-The quickest way to test on mobile is using **Expo Go**:
+1. Install Expo Go on your device
+2. Run `npm start`
+3. Scan the QR code with your camera (iOS) or Expo Go app (Android)
 
-1. Install **Expo Go** app on your phone:
-   - [iOS App Store](https://apps.apple.com/app/expo-go/id982107779)
-   - [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
-
-2. Start the development server:
-
-```bash
-npm start
-# or
-yarn start
-```
-
-3. Scan the QR code with:
-   - **iOS**: Camera app (opens in Expo Go)
-   - **Android**: Expo Go app (built-in scanner)
-
-4. App loads instantly on your phone! ✅
-
-**See [MOBILE_TESTING.md](MOBILE_TESTING.md) for detailed mobile testing guide.**
-
-### 5. Run on iOS Simulator (Mac + Xcode Required)
+iOS Simulator (macOS only)
 
 ```bash
 npm run ios
-# or
-yarn ios
 ```
 
-**Note**: Requires macOS with Xcode installed.
-
-### 6. Run on Android Emulator (Android Studio Required)
-
-First, ensure you have Android Studio installed with Android SDK and an emulator set up.
+Android Emulator
 
 ```bash
 npm run android
-# or
-yarn android
 ```
 
-**Note**: If you get "adb not found" error, you need to install Android Studio first. **Use Expo Go app instead** (no setup required)!
-
-1. Install **Expo Go** app on your device:
-   - [iOS App Store](https://apps.apple.com/app/expo-go/id982107779)
-   - [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
-
-2. Start the development server:
-
-```bash
-npm start
-# or
-yarn start
-```
-
-3. Scan the QR code with:
-   - **iOS**: Camera app
-   - **Android**: Expo Go app
-
-## 🏗️ Building for Production
-
-### Build for Web
-
-```bash
-npm run build:web
-# or
-npx expo export --platform web
-```
-
-The optimized build will be in the `dist` folder, ready to deploy to any static hosting service (Vercel, Netlify, etc.).
-
-### Build for Android (APK)
-
-```bash
-# Using EAS Build (recommended)
-npm install -g eas-cli
-eas build --platform android --profile preview
-
-# Or local build
-npx expo run:android --variant release
-```
-
-### Build for iOS (IPA)
-
-```bash
-# Using EAS Build (recommended)
-npm install -g eas-cli
-eas build --platform ios --profile preview
-
-# Or local build (requires Mac + Xcode)
-npx expo run:ios --configuration Release
-```
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 great-learning-activity-listing/
-├── app/                      # App screens (Expo Router)
-│   ├── (tabs)/              # Tab-based navigation
-│   │   ├── index.tsx        # Activities listing screen
-│   │   └── explore.tsx      # Analytics screen
-│   ├── _layout.tsx          # Root layout
-│   └── modal.tsx            # Modal screen
-├── components/              # Reusable components
-│   ├── activity-card.tsx    # Activity card component
-│   ├── activity-filters.tsx # Filter chips component
-│   └── ui/                  # UI primitives
-├── types/                   # TypeScript type definitions
-│   └── activity.ts          # Activity data types
-├── data/                    # Mock data
-│   └── mockActivities.ts    # Sample activities
-├── constants/               # App constants
-│   └── theme.ts            # Theme colors
-├── hooks/                   # Custom React hooks
-│   └── use-color-scheme.ts # Theme hook
-├── assets/                  # Images and fonts
-├── app.json                # Expo configuration
-├── package.json            # Dependencies
-├── tsconfig.json           # TypeScript config
-└── README.md              # This file
+├── app/                          # Application screens
+│   ├── activities-screen.tsx     # Main activities listing
+│   ├── index.tsx                 # Landing page
+│   ├── modal.tsx                 # Modal screens
+│   └── _layout.tsx               # Root layout
+├── features/                     # Feature modules
+│   ├── activities/               # Activity management
+│   │   ├── components/           # UI components
+│   │   ├── hooks/                # Custom hooks
+│   │   ├── types/                # Type definitions
+│   │   ├── utils/                # Helper functions
+│   │   └── data/                 # Mock data
+│   ├── analytics/                # Analytics feature
+│   └── theme/                    # Theme management
+├── components/                   # Shared components
+├── constants/                    # App constants
+└── hooks/                        # Global hooks
 ```
 
-## 🎨 Design Decisions
+## Architecture
 
-### Component Architecture
+The application follows a feature-based architecture with clear separation of concerns:
 
-- **Atomic Design**: Small, reusable components (ActivityCard, ActivityFilters)
-- **Container/Presentation**: Logic separated from UI
-- **Type Safety**: TypeScript interfaces for all data structures
+Component Organization
 
-### Performance Optimizations
+- Container/Presentational pattern for complex components
+- Feature modules are self-contained with their own components, hooks, and types
+- Shared components live in the root `components` directory
 
-- **FlatList**: Virtualized list for efficient rendering of large lists
-- **useMemo**: Memoized filtered data and statistics calculations
-- **Optimized Re-renders**: Component-level memoization where needed
-- **Image Optimization**: Lazy loading and cached images
+State Management
 
-### Responsive Design
+- React hooks for local state
+- Custom hooks for business logic
+- Context API for theme management
 
-- **Flexible Layouts**: Flexbox-based responsive layouts
-- **Platform-Specific Styles**: Different styles for web vs native where needed
-- **Safe Areas**: Proper handling of notches and status bars
-- **Keyboard Handling**: Automatic keyboard avoidance
+Performance
 
-### User Experience
+- FlatList for efficient list rendering
+- Memoization for expensive calculations
+- Optimized re-renders with React.memo and useCallback
 
-- **Visual Hierarchy**: Clear information hierarchy with typography and spacing
-- **Color Coding**: Activity types have distinct colors for quick recognition
-- **Status Indicators**: Clear visual status (overdue, in-progress, completed)
-- **Interactive Feedback**: Haptic feedback and press states
-- **Empty States**: Helpful messaging when no results found
+## API Integration
 
-## 🧪 Testing
+The application fetches data from MockAPI:
 
-### Running Tests
+```
+https://68f5104fb16eb6f468364608.mockapi.io/api/v1/activities
+```
+
+Key features:
+
+- Automatic loading states with skeleton UI
+- Error handling with retry functionality
+- Type-safe API responses
+
+## Available Scripts
 
 ```bash
-npm test
-# or
-yarn test
+npm start          # Start development server
+npm run web        # Run on web
+npm run ios        # Run on iOS simulator
+npm run android    # Run on Android emulator
+npm test           # Run test suite
+npm run test:watch # Run tests in watch mode
+npm run test:coverage # Run tests with coverage
+npm run lint       # Run ESLint
+npm run format     # Format code with Prettier
 ```
 
-### Test Coverage
+## Testing
 
-The project includes:
+The project includes comprehensive tests for core functionality:
 
-- **Component Tests**: Testing individual components
-- **Integration Tests**: Testing component interactions
-- **Type Tests**: TypeScript ensures type safety
+Test Coverage
 
-### Manual Testing Checklist
+- API Integration: Tests for `useFetchActivities` hook including success, error, and retry scenarios
+- Components: Tests for `ActivityCard` and `ActivityFilters` components
+- Utilities: Tests for activity helper functions (labels, colors, status)
 
-- [ ] Activities list loads correctly
-- [ ] Filters work (all types)
-- [ ] Search functionality works
-- [ ] Activity cards display correct information
-- [ ] Light/dark mode switches correctly
-- [ ] Responsive on different screen sizes
-- [ ] Works on web browser
-- [ ] Works on iOS device/simulator
-- [ ] Works on Android device/emulator
-- [ ] Smooth scrolling performance
-- [ ] Proper handling of empty states
+Running Tests
 
-## 🔄 Data Structure
+```bash
+npm test                  # Run all tests
+npm run test:watch        # Run tests in watch mode
+npm run test:coverage     # Generate coverage report
+```
 
-Activities have the following structure:
+Test Files
+
+- `__tests__/use-fetch-activities.test.ts` - API hook tests
+- `__tests__/activity-card.test.tsx` - Activity card component tests
+- `__tests__/activity-filters.test.tsx` - Filter component tests
+- `__tests__/activity-helpers.test.ts` - Utility function tests
+
+## Building for Production
+
+Web Build
+
+```bash
+npx expo export --platform web
+```
+
+Output in `dist/` folder, ready for deployment to Vercel, Netlify, or any static host.
+
+Mobile Builds
+
+Using EAS Build (recommended):
+
+```bash
+npm install -g eas-cli
+eas build --platform android
+eas build --platform ios
+```
+
+## Activity Data Structure
 
 ```typescript
 interface Activity {
@@ -304,100 +208,59 @@ interface Activity {
   type: 'online-class' | 'assignment' | 'quiz' | 'discussion';
   status: 'not-started' | 'in-progress' | 'completed' | 'overdue';
   description: string;
-  dueDate?: string; // ISO 8601 date string
-  duration?: number; // in minutes
-  progress?: number; // 0-100
-  points?: number; // for assessments
+  category: string;
+  dueDate?: string;
+  duration?: number;
+  progress?: number;
+  points?: number;
   topic?: string;
   instructor?: string;
-  startDate?: string; // for online classes
+  startDate?: string;
   attempts?: number;
   maxAttempts?: number;
-  category: string; // e.g., "AI & Machine Learning"
 }
 ```
 
-## 🚧 Limitations & Known Issues
+## Known Limitations
 
-1. **Mock Data**: Currently using static mock data. Needs API integration.
-2. **Authentication**: No user authentication implemented yet.
-3. **Offline Support**: No offline mode or data persistence.
-4. **Notifications**: Push notifications not implemented.
-5. **Real-time Updates**: No WebSocket connection for real-time activity updates.
-6. **Video Streaming**: Online class video streaming not implemented.
-7. **File Uploads**: Assignment submission with file uploads not implemented.
-8. **Accessibility**: Limited accessibility features (needs ARIA labels, screen reader support).
+- Authentication not implemented
+- No offline data persistence
+- Push notifications not available
+- File upload functionality pending
 
-## 🔮 Future Enhancements
+## Future Improvements
 
-### High Priority
+- Backend API integration with authentication
+- Offline mode with local caching
+- Push notifications for due dates
+- Assignment submission with file uploads
+- Enhanced analytics with visualizations
+- Calendar view for activities
 
-- [ ] **API Integration**: Connect to real backend API
-- [ ] **Authentication**: User login/signup with JWT
-- [ ] **Push Notifications**: Notify users about due dates and new activities
-- [ ] **Offline Mode**: Cache data and sync when online
-- [ ] **Assignment Submission**: Upload files and submit assignments
-- [ ] **Video Player**: Integrated video player for online classes
+## Development Notes
 
-### Medium Priority
+Node Version Compatibility
 
-- [ ] **Calendar View**: Calendar-based view of activities
-- [ ] **Sorting Options**: Sort by due date, title, progress, etc.
-- [ ] **Advanced Filters**: Multiple filter combinations, date ranges
-- [ ] **Activity Details**: Dedicated detail page for each activity
-- [ ] **Progress Tracking**: Visual progress tracking with charts
-- [ ] **Bookmarks/Favorites**: Mark activities as favorites
+If you encounter pre-commit hook errors related to `string-width`, you're likely running Node.js v18. Upgrade to Node.js v20 or higher, or bypass hooks temporarily with:
 
-### Nice to Have
+```bash
+git commit --no-verify
+```
 
-- [ ] **Social Features**: Share progress, collaborate with peers
-- [ ] **Gamification**: Badges, streaks, leaderboards
-- [ ] **Dark Mode Toggle**: Manual dark mode toggle
-- [ ] **Accessibility**: Full WCAG 2.1 compliance
-- [ ] **Internationalization**: Multi-language support
-- [ ] **Analytics Dashboard**: Detailed learning analytics with charts
-- [ ] **Export Data**: Export progress reports as PDF
+Common Issues
 
-## 📱 Screenshots
+1. Metro bundler cache issues: `npx expo start -c`
+2. iOS build issues: `cd ios && pod install`
+3. Android gradle issues: `cd android && ./gradlew clean`
 
-### Activities Screen
+## Contributing
 
-- Displays all learning activities with status badges
-- Search bar for quick filtering
-- Filter chips for activity types
-- Statistics cards showing overdue, in-progress, and completed counts
+This is an assignment project for Great Learning's Full Stack Development Program.
 
-### Analytics Screen
+## License
 
-- Completion rate and points overview
-- Activity breakdown by category
-- Activity breakdown by type
-- Learning tips for students
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is created for Great Learning assignment submission.
-
-## 👤 Author
-
-Created for Great Learning Full Stack Development Program
-
-## 🙏 Acknowledgments
-
-- Great Learning for the opportunity
-- React Native & Expo teams for amazing tools
-- Open source community
+Created for educational purposes as part of Great Learning coursework.
 
 ---
 
-**Note**: This is a demonstration project for Great Learning's assignment. The data is mocked locally for development purposes.
-
-For questions or issues, please open an issue in the GitHub repository.
+For issues or questions, please refer to the project documentation or contact the development team.

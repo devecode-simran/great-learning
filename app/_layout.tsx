@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 
 function RootNavigator() {
   const colorScheme = useColorScheme();
-  
+
   return (
     <>
       <Stack>

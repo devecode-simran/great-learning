@@ -88,7 +88,7 @@ const ActivityFiltersPresentational = ({
     }
     return Dimensions.get('window').width;
   });
-  
+
   const isMobile = screenWidth < 768;
   const horizontalMargin = isMobile ? 16 : 150;
 
